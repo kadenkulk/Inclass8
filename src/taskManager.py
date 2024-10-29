@@ -37,4 +37,19 @@ class TaskManager:
                 self.tasks.remove(task)
             else:
                 print(f"{task_to_remove} was not found in current tasks")
+    def display_tasks(self, display: str):
+        if display.lower() == "completed":
+            for task in self.tasks:
+                if task.completion_flag == True:
+                    print(f"Name: f{task.name}")
+        elif display.lower() == "pending":
+            for task in self.tasks:
+                if task.completion_flag == False:
+                    print(f"Name: f{task.name} Due Date: {task.due_date}")
+        elif display.lower() == "all":
+            for task in self.tasks:
+                print(f"Name: f{task.name} Due Date: {task.due_date}")
+        else :
+            print("Invalid Command")
+
 
