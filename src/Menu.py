@@ -19,7 +19,7 @@ def main_menu():
         elif choice == '3':
             task_manager.delete_task()
         elif choice == '4':
-            task_manager.mark_task_complete()
+            task_manager.mark_complete()
         elif choice == '5':
             print("Goodbye!")
             break
