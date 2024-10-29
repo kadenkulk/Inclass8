@@ -21,4 +21,6 @@ class TaskManager:
         for task in self.tasks:
             if task.name == task_to_remove:
                 self.tasks.remove(task)
+            else:
+                print(f"{task_to_remove} was not found in current tasks")
 
