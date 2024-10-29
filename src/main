@@ -1,0 +1,15 @@
+class TaskManager:
+    def __init__(self):
+        tasks = []
+
+    def add_task(self):
+        task = Task()
+
+        task.name = input("Task Name: ")
+        task.description = input("Description: ")
+        task.due_date = input("Enter Due Date(MM-DD-YYYY): ")
+        task.completion_flag = False
+
+        self.tasks.append(task)
+
+        return None
