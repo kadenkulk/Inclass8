@@ -27,6 +27,9 @@ class DesktopNotifier:
             app_icon=self.app_icon,
             timeout=self.timeout
         )
+        print("Notification sent.")
+        # Cancel the job to ensure it only runs once
+        return schedule.CancelJob
 
     def schedule_notification(self, delay_seconds=60):
         """
@@ -35,26 +38,20 @@ class DesktopNotifier:
         :param delay_seconds: Time to wait before showing the notification (in seconds).
         """
         print(f"Notification will be sent in {delay_seconds} seconds.")
-        schedule_time = time.time() + delay_seconds
         schedule.every(delay_seconds).seconds.do(self.send_notification)
-
-    def schedule_notification_at(self, time_str):
-        """
-        Schedule a notification at a specific time.
-        
-        :param time_str: Time string in "HH:MM" format for 24-hour time.
-        """
-        print(f"Notification will be sent at {time_str}.")
-        schedule.every().day.at(time_str).do(self.send_notification)
 
     def run_scheduled_notifications(self):
         """
-        Start the scheduler to run any scheduled notifications.
+        Run the scheduler and check for pending notifications once.
         """
-        print("Scheduler is running...")
+        print("Scheduler is running for one notification...")
         while True:
             schedule.run_pending()
             time.sleep(1)
+            # Stop the loop if no jobs remain in the scheduler
+            if not schedule.get_jobs():
+                print("No more scheduled jobs. Exiting.")
+                break
 
 # Example usage:
 if __name__ == "__main__":
@@ -68,8 +65,5 @@ if __name__ == "__main__":
     # Schedule a notification to appear after 10 seconds
     notifier.schedule_notification(delay_seconds=10)
 
-    # Schedule a daily notification at a specific time (e.g., 14:00)
-    notifier.schedule_notification_at("14:00")
-
-    # Start the scheduler to keep the script running
+    # Run the scheduler once for the notification
     notifier.run_scheduled_notifications()
