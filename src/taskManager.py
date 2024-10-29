@@ -6,15 +6,29 @@ class TaskManager:
 
     def add_task(self):
         task = Task()
-    
+
         task.name = input("Task Name: ")
         task.description = input("Description: ")
-        task.due_date = input("Enter Due Date(MM-DD-YYYY): ")
         task.completion_flag = False
-    
+
+        date_valid = False
+        while date_valid == False:
+            task.due_date = input("Enter Valid Due Date(MM-DD-YYYY): ")
+            date_check = task.due_date.split("-")
+            for date in date_check:
+                if not (isinstance(date, int)):
+                    print("Date not Valid.")
+                    break
+                else:
+                    if date is date_check[-1] and isinstance(date, int):
+                        date_valid = True
+                        break
+                    else:
+                        continue
+                        
         self.tasks.append(task)
-    
         return None
+                    
     
     def delete_task(self):
         task_to_remove = input("Please enter the exact name of the name you want to remove")
