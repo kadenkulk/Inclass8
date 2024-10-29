@@ -63,3 +63,13 @@ class TaskManager:
         print("This task does not exist.")
 
 
+
+    def mark_complete(self, task_name):
+        for task in self.tasks:
+            if task_name == task.name:
+                if task.completion_flag != True:
+                    task.completion_flag = True
+                else:
+                    return "This task is already complete."
+        return "This task does not exist."
+
