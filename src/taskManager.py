@@ -38,3 +38,13 @@ class TaskManager:
             else:
                 print(f"{task_to_remove} was not found in current tasks")
 
+
+    def mark_complete(self, task_name):
+        for task in self.tasks:
+            if task_name == task.name:
+                if task.completion_flag != True:
+                    task.completion_flag = True
+                else:
+                    return "This task is already complete."
+        return "This task does not exist."
+
