@@ -1,10 +1,10 @@
 class Task:
     class Task:
-        def __init__(self, name, description, due_date, urgency=None):
+        def __init__(self, name, description, due_date, priority=None):
             self.name = name
             self.description = description
             self.due_date = due_date
-            self.urgency = urgency
+            self.priority = priority
             self.completed = False
 
         def mark_as_complete(self):
@@ -18,7 +18,8 @@ class Task:
             if due_date is not None:
                 self.due_date = due_date
 
-        def set_urgency(self, urgency):
-            self.urgency = urgency
+        def set_urgency(self, priority):
+            self.priority = priority
 
-
+        def __repr__(self):
+            return f"{self.description} (Due: {self.due_date}) (priority: {self.priority})"
