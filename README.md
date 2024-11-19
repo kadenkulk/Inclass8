@@ -5,7 +5,6 @@ Overview:
 Features:
 
 Vocabulary/classes:
-  -
 
 User guide:
 
