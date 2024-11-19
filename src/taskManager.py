@@ -5,7 +5,7 @@ class TaskManager:
         self.tasks = []
 
     def add_task(self):
-        task = Task()
+
 
         task = Task(input("Task Name: "), input("Description: "), self.validate_date())
         self.tasks.append(task)
