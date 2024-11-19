@@ -7,14 +7,15 @@ class TaskManager:
     def add_task(self):
         task = Task()
 
-        task.name = input("Task Name: ")
-        task.description = input("Description: ")
-        task.completion_flag = False
+        task = Task(input("Task Name: "), input("Description: "), self.validate_date())
+        self.tasks.append(task)
+        return None
 
+    def validate_date(self):
         date_valid = False
         while date_valid == False:
-            task.due_date = input("Enter Valid Due Date(MM-DD-YYYY): ")
-            date_check = task.due_date.split("-")
+            task_due_date = input("Enter Valid Due Date(MM-DD-YYYY): ")
+            date_check = task_due_date.split("-")
             for date in date_check:
                 date = int(date)
                 if not (isinstance(date, int)):
@@ -22,15 +23,11 @@ class TaskManager:
                     break
                 else:
                     if date == int(date_check[-1]):
-                        date_valid = True
-                        break
+                        return date
                     else:
                         continue
-                        
-        self.tasks.append(task)
-        return None
-                    
-    
+
+
     def delete_task(self):
         task_to_remove = input("Please enter the exact name of the name you want to remove")
         for task in self.tasks:
@@ -38,23 +35,23 @@ class TaskManager:
                 self.tasks.remove(task)
             else:
                 print(f"{task_to_remove} was not found in current tasks")
-    
+
     def display_tasks(self):
         display = input("Please enter how you want it displayed (completed, pending or all)")
         if display.lower() == "completed":
             for task in self.tasks:
-                if task.completion_flag == True:
-                    print(f"Name: {task.name}")
+                if task.completed == True:
+                    print(f"Name: f{task.name}")
         elif display.lower() == "pending":
             for task in self.tasks:
-                if task.completion_flag == False:
-                    print(f"Name: {task.name} Due Date: {task.due_date}")
+                if task.completed == False:
+                    print(f"Name: f{task.name} Due Date: {task.due_date}")
         elif display.lower() == "all":
             for task in self.tasks:
-                print(f"Name: {task.name} Due Date: {task.due_date}")
+                print(task)
         else :
             print("Invalid Command")
-    
+
     def mark_complete(self):
         task_name = input("Please enter the exit task name")
         for task in self.tasks:

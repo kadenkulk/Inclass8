@@ -21,4 +21,4 @@ class Task:
         self.priority = priority
 
     def __repr__(self):
-        return f"{self.description} (Due: {self.due_date}) (priority: {self.priority})"
+        return f"name: {self.name}. Desc: {self.description} (Due: {self.due_date}) (priority: {self.priority})"
