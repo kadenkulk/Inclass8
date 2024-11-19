@@ -1,4 +1,4 @@
-import Task
+from Task import Task
 class TaskManager:
     def __init__(self) -> None:
         self.login_info = None
@@ -16,11 +16,12 @@ class TaskManager:
             task.due_date = input("Enter Valid Due Date(MM-DD-YYYY): ")
             date_check = task.due_date.split("-")
             for date in date_check:
+                date = int(date)
                 if not (isinstance(date, int)):
                     print("Date not Valid.")
                     break
                 else:
-                    if date is date_check[-1] and isinstance(date, int):
+                    if date == int(date_check[-1]):
                         date_valid = True
                         break
                     else:
