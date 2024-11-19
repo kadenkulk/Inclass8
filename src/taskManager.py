@@ -29,7 +29,7 @@ class TaskManager:
 
 
     def delete_task(self):
-        task_to_remove = input("Please enter the exact name of the name you want to remove")
+        task_to_remove = input("Please enter the exact name of the name you want to remove: ")
         for task in self.tasks:
             if task.name == task_to_remove:
                 self.tasks.remove(task)
@@ -37,7 +37,7 @@ class TaskManager:
                 print(f"{task_to_remove} was not found in current tasks")
 
     def display_tasks(self):
-        display = input("Please enter how you want it displayed (completed, pending or all)")
+        display = input("Please enter how you want it displayed (completed, pending or all): ")
         if display.lower() == "completed":
             for task in self.tasks:
                 if task.completed == True:
@@ -53,7 +53,7 @@ class TaskManager:
             print("Invalid Command")
 
     def mark_complete(self):
-        task_name = input("Please enter the exit task name")
+        task_name = input("Please enter the exit task name: ")
         for task in self.tasks:
             if task_name == task.name:
                 if task.completion_flag != True:
