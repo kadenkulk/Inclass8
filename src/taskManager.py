@@ -1,31 +1,26 @@
-from Task import Task
+from datetime import datetime
+
+from src.Task import Task
+
+
 class TaskManager:
     def __init__(self) -> None:
         self.login_info = None
         self.tasks = []
 
     def add_task(self):
-
-
         task = Task(input("Task Name: "), input("Description: "), self.validate_date())
         self.tasks.append(task)
         return None
 
     def validate_date(self):
-        date_valid = False
-        while date_valid == False:
-            task_due_date = input("Enter Valid Due Date(MM-DD-YYYY): ")
-            date_check = task_due_date.split("-")
-            for date in date_check:
-                date = int(date)
-                if not (isinstance(date, int)):
-                    print("Date not Valid.")
-                    break
-                else:
-                    if date == int(date_check[-1]):
-                        return date
-                    else:
-                        continue
+        while True:
+            task_due_date = input("Enter Valid Due Date (MM-DD-YYYY): ")
+            try:
+                datetime.strptime(task_due_date, "%m-%d-%Y")
+                return task_due_date
+            except ValueError:
+                print("Date not valid. Please enter in MM-DD-YYYY format.")
 
 
     def delete_task(self):
